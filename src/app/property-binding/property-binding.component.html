@@ -1,0 +1,112 @@
+<section>
+
+  <article>
+    <h3>Data Binding com Objetos</h3>
+    <div>
+      Digite seu nome: <input type="text" [(ngModel)]="pessoa.nome">
+      Digite sua idade: <input type="text" [(ngModel)]="pessoa.idade">
+      Digite seu endereço: <input type="text" [(ngModel)]="pessoa.end.endereco">
+      Digite seu numero: <input type="text" [(ngModel)]="pessoa.end.numero">
+    </div>
+    <div>
+      Meu nome é {{ pessoa.nome}}<br>
+      Minha idade é: {{ pessoa.idade }}<br>
+      Endereço: {{ pessoa.end.endereco }}<br>
+      Numero: {{ pessoa.end.numero }}
+    </div>
+  </article>
+  <article>
+    <h3>Two-way-data-binding</h3>
+    <div>
+      Forma 1: <input #fieldInput type="text" [value]="palavra" (input)="palavra = fieldInput.value">
+      <br>
+      Forma 2:<input type="text" [ngModel]="palavra" (ngModelChange)="palavra = $event">
+      <br>
+      Forma 3:<input type="text" [(ngModel)]="palavra">
+      <br>
+      Forma 4:<input type="text" bindon-ngModel="palavra">
+      <p>Você digitou: {{ palavra }}</p>
+    </div>
+  </article>
+  <article>
+    <h3>Event Binding</h3>
+    <div>
+      <button class="btn btn-primary" on-click="botaoClicado()">
+        Alertar
+      </button>
+      <br>
+      <br>
+      <input type="text" #campoInput (keyup)="onKeyUp($event)" (keyup.enter)="onKeyUpEnter(campoInput.value)" (blur)="salvarValor(campoInput.value)">
+
+      <p> Valor atual: {{ valorAtual }}</p>
+      <p> Valor Salvo: {{ valorSalvo }}</p>
+
+      <br>
+      <br>
+
+      <span (mouseover)="onMouseOverOut()" (mouseout)="onMouseOverOut()" [class.highlight]="isMouseOver">
+        Passe o mouse sobre mim
+      </span>
+
+    </div>
+  </article>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <article>
+    <h3>Interpolação</h3>
+    <p>>Site = {{ site }}</p>
+    <p>>1 + 1 = {{ 1 + 1 }}</p>
+    <p>>1 + getValor() = {{1 + getValor()}}</p>
+    <p>>curtiu = {{curtiu && getCurtiuCurso()}}</p>
+  </article>
+
+  <br>
+  <br>
+  <br>
+  <br>
+
+  <article>
+    <h3>Property Binding</h3>
+    <select #classe (change)="0">
+      <option value="alert-success">alert-success</option>
+      <option value="alert-info">alert-info</option>
+      <option value="alert-warning">alert-warning</option>
+      <option value="alert-danger">alert-danger</option>
+    </select>
+
+
+    <div role="alert" class="alert {{ classe.value }}">
+      {{ classe.value }}
+    </div>
+
+    <div role="alert" class="alert {{ classe.value}}" [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+      ERRO - PERIGO
+    </div>
+
+    <div role="alert" class="alert" [class.alert-success]="classe.value == 'alert-success'">
+      SUCESSO
+    </div>
+    <div role="alert" class="alert" [class.alert-info]="classe.value == 'alert-info'">
+      INFO
+    </div>
+    <div role="alert" class="alert" [class.alert-warning]="classe.value == 'alert-warning'">
+      WARNING
+    </div>
+    <div role="alert" class="alert" [class.alert-danger]="classe.value == 'alert-danger'">
+      DANGER
+    </div>
+  </article>
+
+  <article>
+    <h3>Property Binding</h3>
+    <img src="{{ urlImagem }}"><br>
+    <img [src]="urlImagem"><br>
+    <img bind-src="urlImagem"><br>
+  </article>
+
+
+</section>

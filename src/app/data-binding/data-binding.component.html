@@ -1,0 +1,41 @@
+<section>
+  <article>
+    <h3>Output Properties</h3>
+    <contador [valor]="valorInicial" (emissor)="onEmitAlert($event)"></contador>
+  </article>
+  <article>
+    <h3>Input Properties</h3>
+    <app-curso [nome]="nomeDoCurso"></app-curso>
+  </article>
+  <br>
+  <article>
+    <h2 style="color: red;">site: {{ url }}</h2>
+    <p>1 + 1 = {{ 1 + 1}} </p>
+    <p>1 + 1 = {{ getTotalSoma(1,1)}}</p>
+    <p>Gostou do curso={{ true && getFeedBackCurso()}} </p>
+
+  </article>
+  <br>
+  <article>
+    <select #classe (change)="0">
+      <option value="alert-success">alert-success</option>
+      <option value="alert-info">alert-info</option>
+      <option value="alert-warning">alert-warning</option>
+      <option value="alert-danger">alert-danger</option>
+    </select>
+  </article>
+  <br><br>
+
+  <div class="alert {{ classe.value }}" role="alert">
+    Todo o texto colorido
+  </div>
+
+  <div class="alert alert-danger" role="alert" [style.display]="classe.value == 'alert-danger' ? 'block' : 'none'">
+    ERROR
+  </div>
+
+  <div class="alert" role="alert" [class.alert-success]="classe.value =='alert-success'">Sucesso</div>
+  <div class="alert" role="alert" [class.alert-info]="classe.value=='alert-info'">Info</div>
+  <div class="alert" role="alert" [class.alert-warning]="classe.value=='alert-warning'">Alerta</div>
+  <div class="alert" role="alert" [class.alert-danger]="classe.value == 'alert-danger'">Erro</div>
+</section>
